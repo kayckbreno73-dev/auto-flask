@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AUTO FLASK</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #c9dfd2;
+        font-family: Arial, sans-serif;
+        color: #222;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 400px;
+        min-height: 100vh;
+        margin: auto;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .moeda {
+        font-size: 42px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 17px;
+        font-weight: normal;
+        margin-bottom: 40px;
+      }
+
+      .campo {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        height: 27px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 5px;
+        font-size: 14px;
+        background: white;
+      }
+
+      button {
+        background: #087bff;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        padding: 7px 15px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      #resultado {
+        text-align: center;
+        font-size: 15px;
+        margin-top: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="moeda">🪙</div>
+
+      <h1>AUTO FLASK</h1>
+
+      <div class="campo">
+        <label for="gasolina">Gasolina:</label>
+        <input type="number" id="gasolina" placeholder="R$ 5,00" step="0.01" />
+      </div>
+
+      <div class="campo">
+        <label for="etanol">Etanol:</label>
+        <input type="number" id="etanol" placeholder="R$ 5,00" step="0.01" />
+      </div>
+
+      <button onclick="verificar()">Verificar</button>
+
+      <p id="resultado"></p>
+    </main>
+
+    <script>
+      function verificar() {
+        const gasolina = parseFloat(document.getElementById("gasolina").value);
+
+        const etanol = parseFloat(document.getElementById("etanol").value);
+
+        const resultado = document.getElementById("resultado");
+
+        if (!gasolina || !etanol || gasolina <= 0 || etanol <= 0) {
+          resultado.innerHTML = "Preencha os dois preços corretamente.";
+
+          return;
+        }
+
+        const proporcao = etanol / gasolina;
+
+        if (proporcao <= 0.7) {
+          resultado.innerHTML = "Melhor abastecer com Etanol.";
+        } else {
+          resultado.innerHTML = "Melhor abastecer com Gasolina.";
+        }
+      }
+    </script>
+  </body>
+</html>
